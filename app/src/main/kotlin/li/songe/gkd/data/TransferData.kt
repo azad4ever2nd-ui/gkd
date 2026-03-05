@@ -78,7 +78,9 @@ suspend fun exportData(subsIds: Collection<Long>): File {
     } else {
         null
     }
-    val file = sharedDir.resolve("backup-${System.currentTimeMillis()}.zip")
+    SimpleDateFormat dateformat=new  SimpleDateFormat("yyyy-mm-dd HHmmss");
+
+    val file = sharedDir.resolve("backup-${dateformat(System.currentTimeMillis())}.zip")
     ZipUtils.zipFiles(listOfNotNull(dataFile, files), file)
     tempDir.deleteRecursively()
     return file
